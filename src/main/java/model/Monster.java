@@ -1,3 +1,7 @@
+package model;
+
+import model.Warrior;
+
 public class Monster extends Warrior {
     int superPower;
     int isErange = 0;

@@ -1,3 +1,7 @@
+package model;
+
+import java.util.Objects;
+
 public abstract class Warrior implements Fightable {
     private String name;
     private int attak;
@@ -39,9 +43,25 @@ public abstract class Warrior implements Fightable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Warrior warrior = (Warrior) o;
+        return attak == warrior.attak &&
+                hitpoints == warrior.hitpoints &&
+                name.equals(warrior.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, attak, hitpoints);
+    }
+
+    @Override
     public String toString() {
         return "Warrior{" +
                 "name='" + name + '\'' +
+                ", attak=" + attak +
                 ", hitpoints=" + hitpoints +
                 '}';
     }

@@ -1,3 +1,5 @@
+package menu;
+
 public class ChampionMenu implements Menu {
     public void displayMenu() {
         System.out.println("Action items for your personage:");

@@ -1,3 +1,7 @@
+package menu;
+
+import menu.Menu;
+
 public class MonsterMenu implements Menu {
     public void displayMenu() {
         System.out.println("Action items for your personage:");
