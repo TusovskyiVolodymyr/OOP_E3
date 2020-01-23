@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public abstract class Warrior implements Fightable {
     private String name;
-    private int attak;
-    private int hitpoints;
+    private int attack;
+    private int healthPoints;
     private boolean isBlock;
 
-    public Warrior(String name, int attak, int hitpoints) {
+    public Warrior(String name, int attack, int healthPoints) {
         this.name = name;
-        this.attak = attak;
-        this.hitpoints = hitpoints;
+        this.attack = attack;
+        this.healthPoints = healthPoints;
     }
 
     public String getName() {
@@ -22,24 +22,26 @@ public abstract class Warrior implements Fightable {
         this.name = name;
     }
 
-    public int getAttak() {
-        return attak;
+    public int getAttack() {
+        return attack;
     }
 
-    public void setAttak(int attak) {
-        this.attak = attak;
+    public void setAttack(int attack) {
+        if (attack > 0) {
+            this.attack = attack;
+        }
     }
 
-    public int getHitpoints() {
-        return hitpoints;
+    public int getHealthPoints() {
+        return healthPoints;
     }
 
-    public void setHitpoints(int hitpoints) {
-        this.hitpoints = hitpoints;
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
     }
 
     public boolean isAlive() {
-        return getHitpoints() > 0;
+        return getHealthPoints() > 0;
     }
 
     @Override
@@ -47,22 +49,22 @@ public abstract class Warrior implements Fightable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Warrior warrior = (Warrior) o;
-        return attak == warrior.attak &&
-                hitpoints == warrior.hitpoints &&
+        return attack == warrior.attack &&
+                healthPoints == warrior.healthPoints &&
                 name.equals(warrior.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, attak, hitpoints);
+        return Objects.hash(name, attack, healthPoints);
     }
 
     @Override
     public String toString() {
-        return "Warrior{" +
+        return this.getClass().getSimpleName() + "{" +
                 "name='" + name + '\'' +
-                ", attak=" + attak +
-                ", hitpoints=" + hitpoints +
+                ", attak=" + attack +
+                ", hitpoints=" + healthPoints +
                 '}';
     }
 }

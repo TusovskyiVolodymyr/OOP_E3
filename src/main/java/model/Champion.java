@@ -1,28 +1,39 @@
+package model;
+
+import util.ConsoleColors;
+
 public class Champion extends Warrior {
-    private int fightIsOn = 1;
+    private boolean isFighted;
 
     public Champion(String name, int attak, int hitpoints) {
         super(name, attak, hitpoints);
     }
 
-    public void fight(Warrior monster) {
-        monster.setHitpoints(monster.getHitpoints() - monster.getAttak());
+    public boolean isFighted() {
+        return isFighted;
     }
 
-    public int defence(Monster monster) {
-        if (fightIsOn > 0 && fightIsOn < 2) {
-            setHitpoints(getHitpoints() + monster.getAttak());
-            fightIsOn++;
-            System.out.println("Champion makes a block!");
+    public void setFighted(boolean fighted) {
+        isFighted = fighted;
+    }
 
+    public void fight(Warrior monster) {
+        monster.setHealthPoints(monster.getHealthPoints() - getAttack());
+        ConsoleColors.RED.print(String.format("You hit a MONSTER on %s points", getAttack()));
+    }
+
+    public void defence(Warrior monster) {
+        if (isFighted()) {
+            setHealthPoints(getHealthPoints() + monster.getAttack());
+            setFighted(false);
+            ConsoleColors.RED.print("Champion makes a block!");
         } else {
-            System.out.println("Cant do block anymore");
-
+            ConsoleColors.RED.print("Cant do block anymore");
         }
-        return fightIsOn = 1;
     }
 
     public void rest() {
-        setHitpoints(getHitpoints() + 5);
+        setHealthPoints(getHealthPoints() + 5);
+        ConsoleColors.RED.print("CHAMPION health at 5 points");
     }
 }

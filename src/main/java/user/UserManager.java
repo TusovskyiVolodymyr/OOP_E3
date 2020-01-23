@@ -29,8 +29,7 @@ public class UserManager {
     }
 
     public static Warrior getWarrior(UserType userType) {
-        Warrior warrior = getUser(userType).getDroidType();
-        return warrior;
+        return getUser(userType).getDroidType();
     }
 
     public static void setUserTurn(UserType userType) {

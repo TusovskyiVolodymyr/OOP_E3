@@ -3,15 +3,17 @@ package model;
 public class HeroChooser {
 
     public static Warrior getHero(int userPref) {
+        Warrior warrior = null;
         switch (userPref) {
             case 1: {
-                return new Champion("champion", 10, 100);
+                warrior = new Champion("champion", 10, 100);
+                break;
             }
             case 2: {
-                return new Monster("monster", 12, 100);
+                warrior = new Monster("monster", 12, 100);
+                break;
             }
         }
-
-        return null;
+        return warrior;
     }
- }
+}

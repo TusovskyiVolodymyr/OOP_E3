@@ -13,9 +13,9 @@ public class EnableMonsterFightCommand implements Command {
     public void execute() {
         userHero = UserManager.getWarrior(UserType.USER);
         cpuHero = UserManager.getWarrior(UserType.CPU);
-        if (UserManager.getUser(UserType.USER).isTurn() && userHero instanceof Monster) {
-            ((Monster) userHero).enrage();
-        } else if (cpuHero instanceof Monster) {
+        if (UserManager.getUser(UserType.CPU).isTurn() && cpuHero instanceof Monster) {
+            ((Monster) cpuHero).enrage();
+        } else if (UserManager.getUser(UserType.USER).isTurn() && userHero instanceof Monster) {
             ((Monster) userHero).enrage();
         }
     }

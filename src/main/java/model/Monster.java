@@ -1,30 +1,34 @@
 package model;
 
-import model.Warrior;
+import util.ConsoleColors;
 
 public class Monster extends Warrior {
-    int superPower;
-    int isErange = 0;
+    int movesCount;
+    private boolean isEnabledSuperPower;
 
     public Monster(String name, int attak, int hitpoints) {
         super(name, attak, hitpoints);
     }
 
     public void fight(Warrior champion) {
-        champion.setHitpoints(champion.getHitpoints() - getAttak());
-        superPower++;
-        if (champion.getHitpoints() == 0) {
-            System.out.println("Game over!");
+        if (movesCount > 2 && isEnabledSuperPower) {
+            setAttack(getAttack() / 2);
+            isEnabledSuperPower = false;
         }
-        if (superPower == 2 && isErange == 1) {
-            setAttak(getAttak() / 2);
-        }
+        champion.setHealthPoints(champion.getHealthPoints() - getAttack());
+        ((Champion) champion).setFighted(true);
+        movesCount++;
+        ConsoleColors.RED.print(String.format("You hit a CHAMPION on %s points", getAttack()));
     }
 
-    public int enrage() {
-        setAttak(getAttak() * 2);
-        System.out.println("Combo x2 attack!");
-        isErange++;
-        return superPower = 0;
+    public void enrage() {
+        if (!isEnabledSuperPower) {
+            setAttack(getAttack() * 2);
+            ConsoleColors.RED.print("Your attack is increased at x2 times");
+            movesCount = 0;
+            isEnabledSuperPower = true;
+        } else {
+            ConsoleColors.RED.print("The super attack is already on!");
+        }
     }
 }

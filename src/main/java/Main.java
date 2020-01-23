@@ -1,29 +1,33 @@
 import command.CommandPicker;
 import menu.StartMenu;
+import randomizer.Random;
 import scannerManager.ScannerManager;
 import user.UserManager;
 import user.UserType;
+import util.ConsoleColors;
 
 public class Main {
     public static void main(String[] args) {
-
-        StartMenu.displayMenu();
-        UserManager.getUserList().forEach(user -> System.out.println(user.getDroidType().toString()));
+        new StartMenu().displayMenu();
+        ConsoleColors.YELLOW.print("Current status: ");
+        UserManager.getUserList().forEach(user -> ConsoleColors.YELLOW.print(user.getDroidType().toString()));
         while (UserManager.getUserList().stream().allMatch(user -> user.getDroidType().isAlive())) {
             UserManager.setUserTurn(UserType.USER);
+            ConsoleColors.PURPLE.print("Now is turn of " + UserManager.getUser(UserType.USER).getUserName());
             UserManager.displayUserMenu();
             int userChoice = ScannerManager.getScanner().nextInt();
-            System.out.println("You entered - " + userChoice);
+            ConsoleColors.CYAN.print("You entered - " + userChoice);
             CommandPicker.getCommand(userChoice);
             UserManager.setUserTurn(UserType.CPU);
-            UserManager.getUserList().forEach(user -> System.out.println(user.getDroidType().toString()));
+            ConsoleColors.PURPLE.print("Now is turn of " + UserManager.getUser(UserType.CPU).getUserName());
+            ConsoleColors.YELLOW.print("Current status: ");
+            UserManager.getUserList().forEach(user -> ConsoleColors.YELLOW.print(user.getDroidType().toString()));
             UserManager.displayCPUMenu();
-            userChoice = ScannerManager.getScanner().nextInt();
-            System.out.println("You entered - " + userChoice);
+            userChoice = Random.getRandomInt();
+            ConsoleColors.CYAN.print("CPU entered - " + userChoice);
             CommandPicker.getCommand(userChoice);
-            UserManager.getUserList().forEach(user -> System.out.println(user.getDroidType().toString()));
-            //monster actions
-            //champ actions
+            ConsoleColors.YELLOW.print("Current status: ");
+            UserManager.getUserList().forEach(user -> ConsoleColors.YELLOW.print(user.getDroidType().toString()));
         }
     }
 }
