@@ -13,6 +13,10 @@ public class MonsterCommand extends CommandFactory {
                 command = new EnableMonsterFightCommand();
                 break;
             }
+            case 3: {
+                command = new HealCommand();
+                break;
+            }
         }
         command.execute();
         System.out.println("Command executed: " + command.getClass().getSimpleName());

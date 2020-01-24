@@ -14,7 +14,7 @@ public class ChampionCommand extends CommandFactory {
                 break;
             }
             case 3: {
-                command = new RestCommand();
+                command = new HealCommand();
                 break;
             }
         }

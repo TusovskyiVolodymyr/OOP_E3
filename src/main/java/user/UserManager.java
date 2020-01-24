@@ -52,4 +52,8 @@ public class UserManager {
         }
         return user;
     }
+
+    public static boolean isAllUsersAlive() {
+        return UserManager.getUserList().stream().allMatch(user -> user.getDroidType().isAlive());
+    }
 }

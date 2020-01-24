@@ -5,6 +5,6 @@ public class ChampionMenu implements Menu {
         System.out.println("Action items for CHAMPION personage:");
         System.out.println("1 - attack the opponent");
         System.out.println("2 - make a block (will reflect any attack)");
-        System.out.println("3 - rest (will add +5 HP to your health)");
+        System.out.println("3 - heal (will add +7 HP to your health)");
     }
 }

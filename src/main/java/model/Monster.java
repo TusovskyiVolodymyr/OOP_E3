@@ -31,4 +31,10 @@ public class Monster extends Warrior {
             ConsoleColors.RED.print("The super attack is already on!");
         }
     }
+
+    @Override
+    public void heal() {
+        setHealthPoints(getHealthPoints() + 5);
+        ConsoleColors.RED.print("Monster health at 5 points");
+    }
 }

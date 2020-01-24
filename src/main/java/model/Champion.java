@@ -32,8 +32,8 @@ public class Champion extends Warrior {
         }
     }
 
-    public void rest() {
-        setHealthPoints(getHealthPoints() + 5);
-        ConsoleColors.RED.print("CHAMPION health at 5 points");
+    public void heal() {
+        setHealthPoints(getHealthPoints() + 7);
+        ConsoleColors.RED.print("CHAMPION health at 7 points");
     }
 }

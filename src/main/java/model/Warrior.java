@@ -2,11 +2,10 @@ package model;
 
 import java.util.Objects;
 
-public abstract class Warrior implements Fightable {
+public abstract class Warrior implements Fightable, Healable {
     private String name;
     private int attack;
     private int healthPoints;
-    private boolean isBlock;
 
     public Warrior(String name, int attack, int healthPoints) {
         this.name = name;
@@ -16,10 +15,6 @@ public abstract class Warrior implements Fightable {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getAttack() {
